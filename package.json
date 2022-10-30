@@ -1,0 +1,22 @@
+{
+    "name": "schoology-file-viewer",
+    "version": "0.0.1",
+    "description": "Better schoology file viewers",
+    "directories": {
+        "doc": "docs"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Harker-Hackers/schoology-extension.git"
+    },
+    "author": "Harker Hackers & Daniel Gergov",
+    "license": "MIT",
+    "homepage": "https://github.com/Harker-Hackers/schoology-extension#readme",
+    "devDependencies": {
+        "es2015": "^0.0.0"
+    },
+    "dependencies": {}
+}

@@ -1,0 +1,26 @@
+{
+    "name": "Schoology File View",
+    "version": "0.0.1",
+    "description": "A more advanced schoology file viewing system",
+    "permissions": [
+        "storage",
+        "webRequest",
+        "webRequestBlocking",
+        "*://*.schoology.harker.org/*/",
+        "*://*.schoology.com/*",
+        "https://saml.finalsite.com/*/",
+        "*://resources.harker.org/download/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": ["https://schoology.harker.org/course/*/materials/gp/*"],
+            "js": ["pdfview.js"]
+        }
+    ],
+    "background": {
+        "persistent": true,
+        "scripts": ["pdfHeaderRemover.js"]
+    },
+    "browser_action": {},
+    "manifest_version": 2
+}
