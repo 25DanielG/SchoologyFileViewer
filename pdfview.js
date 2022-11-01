@@ -13,7 +13,6 @@ try {
         fetchProm
             .then(x => x.text())
             .then((response) => {
-                console.log(response);
                 var javaFrame = document.createElement('iframe');
                 tag = document.querySelector("#content-wrapper");
                 width = tag.clientWidth;
@@ -21,10 +20,11 @@ try {
                 left = tag.offsetLeft;
                 top = tag.offsetTop;
                 var textFile = null,
+                // Create a text file link to pass to iframe src attribute
                 makeTextFile = function (text) {
                     var data = new Blob([text], {type: 'text/plain'});
                     if (textFile !== null) {
-                    window.URL.revokeObjectURL(textFile);
+                        window.URL.revokeObjectURL(textFile);
                     }
                     textFile = window.URL.createObjectURL(data);
                     return textFile;
@@ -41,12 +41,27 @@ try {
                 javaFrame.setAttribute("scrolling", "yes");
                 javaFrame.id = "content-display"
                 javaFrame.allowFullscreen = "yes";
+                javaFrame.setAttribute("style", "background-color: #FFFFFF");
+                // Place iframe on page
                 document
                     .getElementById('content-wrapper')
                     .prepend(javaFrame);
+                // Change the style of the html in the iframe
+                javaFrame.onload = function changeStyle() {
+                    iframedoc = document
+                        .getElementsByTagName("iframe")[0]
+                        .contentDocument;
+                    iframedoc
+                        .getElementsByTagName("pre")[0]
+                        .setAttribute("style", "color: #000000; background-color: #FFFFFF");
+                    iframedoc
+                        .getElementsByTagName("meta")[0]
+                        .setAttribute("content", "light");
+                }
             })
         //window.open(link, '_blank');
     }
+
     if (link.slice(-4) != ".pdf" && link.slice(-5) != ".java") {
         throw Error;
     }
